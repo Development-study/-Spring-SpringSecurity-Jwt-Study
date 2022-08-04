@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping(value = "/auth")
 @RequiredArgsConstructor
@@ -17,14 +19,14 @@ public class AuthController {
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/sign-up")
     public String userSignUp(
-            @RequestBody UserSignUpRequest request
+            @RequestBody @Valid UserSignUpRequest request
     ) {
         return authService.userSignUp(request);
     }
 
     @PostMapping("/sign-in")
     public String userSignIn(
-            @RequestBody UserSignInRequest request
+            @RequestBody @Valid UserSignInRequest request
     ) {
         return authService.userSignIn(request);
     }
